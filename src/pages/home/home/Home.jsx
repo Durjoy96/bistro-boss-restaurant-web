@@ -1,5 +1,5 @@
-import Categories from "../../categories/Categories";
 import Banner from "../banner/Banner";
+import Categories from "../categories/Categories";
 
 const Home = () => {
   return (
