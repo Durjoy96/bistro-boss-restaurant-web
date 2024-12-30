@@ -1,22 +1,32 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const navPages = (
     <>
       <li>
-        <Link className="uppercase font-semibold">Home</Link>
+        <NavLink to="/" className="uppercase font-semibold">
+          Home
+        </NavLink>
       </li>
       <li>
-        <Link className="uppercase font-semibold">Contact Us</Link>
+        <NavLink to="/contact-us" className="uppercase font-semibold">
+          Contact Us
+        </NavLink>
       </li>
       <li>
-        <Link className="uppercase font-semibold">Dashboard</Link>
+        <NavLink to="/dashboard" className="uppercase font-semibold">
+          Dashboard
+        </NavLink>
       </li>
       <li>
-        <Link className="uppercase font-semibold">Our Menu</Link>
+        <NavLink to="/our-menu" className="uppercase font-semibold">
+          Our Menu
+        </NavLink>
       </li>
       <li>
-        <Link className="uppercase font-semibold">Our Shop</Link>
+        <NavLink to="/our-shop" className="uppercase font-semibold">
+          Our Shop
+        </NavLink>
       </li>
     </>
   );
