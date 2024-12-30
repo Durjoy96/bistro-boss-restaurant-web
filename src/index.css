@@ -11,3 +11,8 @@
 .carousel .thumbs-wrapper {
   @apply flex justify-center;
 }
+
+/* our shops page tabs custom styles */
+.react-tabs__tab[aria-selected="true"] {
+  @apply border-none underline underline-offset-4 decoration-yellow-500 text-yellow-500;
+}

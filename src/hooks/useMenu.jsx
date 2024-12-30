@@ -15,7 +15,7 @@ const useMenu = (category) => {
           setMenu(data);
         }
       });
-  }, [menu]);
+  }, []);
   return [menu];
 };
 
