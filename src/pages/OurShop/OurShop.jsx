@@ -4,11 +4,13 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import useMenu from "../../hooks/useMenu";
 import { useEffect, useState } from "react";
+import Card from "../../components/Card/Card";
 
 const OurShop = () => {
   const [menu] = useMenu();
 
   const [categories, setCategories] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const categories = [];
@@ -16,9 +18,15 @@ const OurShop = () => {
       categories.push(recipe.category);
     }
     const unique = new Set(categories.map((category) => category));
+    tabHandler([...unique][0]); //show 1st categories data after reloading
     setCategories([...unique]);
-    console.log(unique);
   }, [menu]);
+
+  const tabHandler = (category) => {
+    const filteredData = menu.filter((recipe) => recipe.category === category);
+    console.log(filteredData);
+    setData(filteredData);
+  };
 
   return (
     <>
@@ -33,16 +41,21 @@ const OurShop = () => {
           <Tabs>
             <TabList className="flex gap-6 justify-center uppercase">
               {categories.map((category, idx) => (
-                <Tab key={idx}>{category}</Tab>
+                <Tab onClick={() => tabHandler(category)} key={idx}>
+                  {category}
+                </Tab>
               ))}
             </TabList>
 
-            <TabPanel>
-              <h2>Any content 1</h2>
-            </TabPanel>
-            <TabPanel>
-              <h2>Any content 2</h2>
-            </TabPanel>
+            {categories.map((idx) => (
+              <TabPanel key={idx}>
+                <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                  {data.map((recipe) => (
+                    <Card recipe={recipe} />
+                  ))}
+                </div>
+              </TabPanel>
+            ))}
           </Tabs>
         </div>
       </section>
