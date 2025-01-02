@@ -18,7 +18,7 @@ const OurShop = () => {
       categories.push(recipe.category);
     }
     const unique = new Set(categories.map((category) => category));
-    tabHandler([...unique][0]); //show 1st categories data after reloading
+    tabHandler([...unique][0]); //show 1st categories data after reloading the page
     setCategories([...unique]);
   }, [menu]);
 
@@ -47,7 +47,7 @@ const OurShop = () => {
               ))}
             </TabList>
 
-            {categories.map((idx) => (
+            {categories.map((category, idx) => (
               <TabPanel key={idx}>
                 <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                   {data.map((recipe) => (

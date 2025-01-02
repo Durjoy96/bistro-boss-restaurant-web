@@ -6,6 +6,10 @@
   .main-container {
     @apply max-w-screen-xl mx-auto px-5;
   }
+
+  .primary-btn {
+    @apply bg-yellow-500 text-white btn hover:bg-yellow-500 hover:opacity-70 disabled:bg-gray-300;
+  }
 }
 
 .carousel .thumbs-wrapper {
