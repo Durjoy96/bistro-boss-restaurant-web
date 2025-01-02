@@ -1,11 +1,29 @@
-import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
+import { useForm } from "react-hook-form";
+import { AuthContext } from "../../../provider/AuthProvider";
 
-const Login = () => {
+const Register = () => {
+  const { createUser } = useContext(AuthContext);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+    createUser(data.email, data.password)
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error.message));
+  };
+
   const [btnDisabled, setBtnDisabled] = useState(true);
 
   useEffect(() => {
@@ -19,23 +37,22 @@ const Login = () => {
       setBtnDisabled(true);
     }
   };
-
   return (
     <>
       <section className="main-container flex justify-center pt-12 md:pt-20 lg:pt-32">
         <div className="w-full max-w-md p-4 rounded-md shadow sm:p-8 bg-white dark:bg-gray-50 dark:text-gray-800">
           <h2 className="mb-3 text-3xl font-semibold text-center">
-            Login to your account
+            Register an account
           </h2>
           <p className="text-sm text-center dark:text-gray-600">
-            Don't have an account?{" "}
-            <a
+            Already have an account?{" "}
+            <Link
               href="#"
               rel="noopener noreferrer"
               className="focus:underline hover:underline"
             >
-              Sign up here
-            </a>
+              Login here
+            </Link>
           </p>
           <div className="my-6 space-y-4">
             <button
@@ -58,8 +75,20 @@ const Login = () => {
             <p className="px-3 dark:text-gray-600">OR</p>
             <hr className="w-full dark:text-gray-600" />
           </div>
-          <form noValidate="" action="" className="space-y-8">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
             <div className="space-y-4">
+              <div className="space-y-2">
+                <label htmlFor="name" className="block text-sm">
+                  Name
+                </label>
+                <input
+                  type="name"
+                  name="name"
+                  {...register("name")}
+                  placeholder="leroy jenkins"
+                  className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+                />
+              </div>
               <div className="space-y-2">
                 <label htmlFor="email" className="block text-sm">
                   Email address
@@ -67,7 +96,7 @@ const Login = () => {
                 <input
                   type="email"
                   name="email"
-                  id="email"
+                  {...register("email")}
                   placeholder="leroy@jenkins.com"
                   className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
                 />
@@ -88,10 +117,13 @@ const Login = () => {
                 <input
                   type="password"
                   name="password"
-                  id="password"
+                  {...register("password", { required: true })}
                   placeholder="*****"
                   className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
                 />
+                {errors.password && (
+                  <span className="text-red-500">This field is required</span>
+                )}
               </div>
               <div className="space-y-2">
                 <label htmlFor="captcha" className="block text-sm">
@@ -107,11 +139,11 @@ const Login = () => {
               </div>
             </div>
             <button
-              type="button"
+              type="submit"
               disabled={btnDisabled}
               className="primary-btn w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-600 dark:text-gray-50"
             >
-              Sign in
+              Register Now!
             </button>
           </form>
         </div>
@@ -120,4 +152,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
