@@ -27,10 +27,10 @@ const AuthProvider = ({ children }) => {
 
   const authInfo = {
     user,
-    loading, 
+    loading,
     createUser,
     signIn,
-    signOutUser, 
+    signOutUser,
   };
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
         setUser(currentUser);
         setLoading(false);
       } else {
-        setUser([]);
+        setUser(null);
         setLoading(false);
       }
     });
