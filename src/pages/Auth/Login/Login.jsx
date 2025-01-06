@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
@@ -29,13 +30,13 @@ const Login = () => {
           </h2>
           <p className="text-sm text-center dark:text-gray-600">
             Don't have an account?{" "}
-            <a
-              href="#"
+            <Link
+              to="/register"
               rel="noopener noreferrer"
               className="focus:underline hover:underline"
             >
               Sign up here
-            </a>
+            </Link>
           </p>
           <div className="my-6 space-y-4">
             <button
