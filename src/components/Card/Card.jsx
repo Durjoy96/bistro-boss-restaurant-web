@@ -3,13 +3,14 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import useCart from "../../hooks/useCart";
 
 const Card = ({ recipe }) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  console.log(user);
   const { image, name, recipe: description, price, _id } = recipe;
   const axiosSecure = useAxiosSecure();
+  const [, refetch] = useCart();
   const cartBtnHandler = () => {
     if (!user) {
       navigate("/login");
@@ -20,6 +21,7 @@ const Card = ({ recipe }) => {
         .then((res) => {
           console.log(res.data);
           toast.success("Successfully Added!");
+          refetch(); //refetch cart get api
         })
         .catch((error) => toast.error(error.message));
     }

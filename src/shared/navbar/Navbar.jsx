@@ -2,10 +2,12 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import { FaCartPlus } from "react-icons/fa";
+import useCart from "../../hooks/useCart";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
-  console.log(user);
+  const [cart] = useCart();
+  console.log(cart);
   const navPages = (
     <>
       <li>
@@ -35,7 +37,9 @@ const Navbar = () => {
       </li>
       <li>
         <div className="indicator">
-          <span className="indicator-item badge badge-primary">0</span>{" "}
+          <span className="indicator-item badge badge-primary">
+            {cart.length}
+          </span>{" "}
           <FaCartPlus></FaCartPlus> Cart
         </div>
       </li>
