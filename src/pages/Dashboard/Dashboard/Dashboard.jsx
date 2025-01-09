@@ -20,6 +20,12 @@ const Dashboard = () => {
                   Cart
                 </NavLink>
               </li>
+              <li>
+                <NavLink to="add-item">
+                  <FaCartPlus />
+                  Add Item
+                </NavLink>
+              </li>
             </ul>
           </div>
           <div className="w-full">
