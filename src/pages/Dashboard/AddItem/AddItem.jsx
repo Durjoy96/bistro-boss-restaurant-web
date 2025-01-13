@@ -8,7 +8,6 @@ const AddItem = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm();
 
   const onSubmit = async (data) => {
@@ -27,8 +26,8 @@ const AddItem = () => {
       )
       // .then((res) => console.log(res.data))
       .catch((error) => toast.error(error.message));
-    console.log(data);
-    console.log(res.data.display_url);
+    // console.log(data);
+    // console.log(res.data.display_url);
   };
 
   return (

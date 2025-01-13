@@ -15,11 +15,11 @@ const Card = ({ recipe }) => {
     if (!user) {
       navigate("/login");
     } else {
-      const itemInfo = { user_email: user.email, itemId: _id };
+      const itemInfo = { user_email: user.email, itemId: _id, price };
       axiosSecure
         .post("/cart", itemInfo)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           toast.success("Successfully Added!");
           refetch(); //refetch cart get api
         })

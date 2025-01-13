@@ -24,7 +24,7 @@ const OurShop = () => {
 
   const tabHandler = (category) => {
     const filteredData = menu.filter((recipe) => recipe.category === category);
-    console.log(filteredData);
+    // console.log(filteredData);
     setData(filteredData);
   };
 
